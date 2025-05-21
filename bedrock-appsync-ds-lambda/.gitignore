@@ -1,0 +1,13 @@
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: MIT-0
+
+.venv
+dist
+__pycache__
+*.pyc
+.pytest_cache
+package
+*.tar.gz
+build
+*.whl
+*.zip

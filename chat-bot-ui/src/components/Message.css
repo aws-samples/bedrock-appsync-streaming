@@ -1,0 +1,310 @@
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+SPDX-License-Identifier: MIT-0 */
+
+/* receive message styles */
+.gen-ai-bot .app .message-receive-row {
+  display: flex;
+  justify-content: flex-start;
+  /* margin-left: 0.5rem; */
+}
+.gen-ai-bot .app .receive-content {
+  line-height: 24px;
+  /* padding: 1px 11px; */ /* TODO - bootstrap 3.x fix. */
+  display: flex;
+  flex-direction: column;
+  min-width: 225px;
+  max-width: calc(100% - 15vw);
+  padding-bottom: 11px;
+  padding-left: 16px; /* TODO - bootstrap 3.x fix. */
+  /* padding-top: 1px; */
+}
+.gen-ai-bot .app .receive-content span {
+  /* max-width: 355px; */
+  word-wrap: break-word;
+  margin-bottom: 10px;
+  line-height: 24px;
+  position: relative;
+	padding: 10px 20px;
+  border-radius: 25px;
+}
+.gen-ai-bot .app .receive-content span::before, .gen-ai-bot .receive-content span::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 25px;
+}
+.gen-ai-bot .app .receive-content span > p:first-child, .gen-ai-bot .receive-content span > p:last-child {
+  margin: 0;
+}
+.gen-ai-bot .app .receive-content-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.gen-ai-bot .app .receive-content-header .display-name {
+  margin-left: 20px;
+  font-size: smaller;
+}
+.gen-ai-bot .app .receive-content-header .timestamp {
+  font-size: smaller;
+  margin-right: 10px;
+}
+.gen-ai-bot .app .receive-message {
+	background: #E5E5EA;;
+	color: black;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  margin-left: 1rem;
+}
+.gen-ai-bot .app .receive-message::before {
+  left: -7px;
+  width: 20px;
+  background-color: #E5E5EA;;
+  border-bottom-right-radius: 16px 14px;
+}
+.gen-ai-bot .app .receive-message::after {
+  left: -26px;
+  width: 26px;
+  background-color: white;
+  border-bottom-right-radius: 10px;
+}
+
+/* send message styles */
+.gen-ai-bot .app .message-send-row {
+  display: flex;
+  justify-content: flex-end;
+}
+.gen-ai-bot .app .message-send-row .avatar {
+  margin-top: auto;
+  margin-bottom: 4px;
+  /* background-color: #EAAB00 !important; */
+}
+.gen-ai-bot .app .send-content {
+  line-height: 24px;
+  /* padding: 1px 15px; */ /* TODO - bootstrap 3.x fix. */
+  display: flex;
+  flex-direction: column;
+  min-width: 225px;
+  max-width: calc(100% - 15vw);
+  padding-bottom: 11px;
+  padding-right: 16px;
+  /* margin-right: 16px; */
+}
+.gen-ai-bot .app .send-content p {
+  /* max-width: 355px; */
+  word-wrap: break-word;
+  margin-bottom: 10px;
+  line-height: 24px;
+  position: relative;
+	padding: 10px 20px;
+  border-radius: 25px;
+}
+.gen-ai-bot .app .send-content p::before, .gen-ai-bot .app .send-content p::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 25px;
+}
+.gen-ai-bot .app .send-content-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.gen-ai-bot .app .send-content-header .display-name {
+  margin-left: 20px;
+  font-size: smaller;
+}
+.gen-ai-bot .app .send-content-header .timestamp {
+  font-size: smaller;
+  padding-right: 15px;
+}
+.gen-ai-bot .app .send-message {
+	background: #4A7283;
+  color: white;
+	align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  margin-right: 1rem;
+}
+.gen-ai-bot .app .send-message::before {
+  right: -7px;
+  width: 20px;
+  background-color: #4A7283;
+  border-bottom-left-radius: 16px 14px;
+}
+.gen-ai-bot .app .send-message::after {
+  right: -26px;
+  width: 26px;
+  background-color: white;
+  border-bottom-left-radius: 10px;
+}
+
+/* message pending row styles */
+.gen-ai-bot .app .message-pending-row {
+  display: flex;
+  justify-content: flex-start;
+}
+.gen-ai-bot .app .pending-content {
+  display: flex;
+  align-self: self-end;
+  margin-left: 40px;
+  margin-bottom: 20px;
+}
+
+
+/* common message styles */
+.gen-ai-bot .app .avatar-nothing {
+  color: transparent;
+  background-Color: transparent;
+  /* width: 4;
+  height: 4; */
+}
+
+.gen-ai-bot .image-container {
+  height: 40px; /* TODO - bootstrap 3.x fix. */
+  width: 40px; /* TODO - bootstrap 3.x fix. */
+  border-radius: 50%;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.gen-ai-bot .image-container > svg {
+  height: 25px;
+  margin-top: 7px; /* TODO - bootstrap 3.x fix. */
+}
+
+.gen-ai-bot .message-receive-row .image-container,
+.gen-ai-bot .message-pending-row .image-container {
+  align-self: flex-end;
+  background-color: #003946;
+  color: white;
+}
+
+.gen-ai-bot .message-send-row .image-container {
+  align-self: flex-end;
+  background-color: #EAAB00;
+  color: white;
+}
+
+/*
+ * three dot animation
+ */
+ .gen-ai-bot .message-pending-row .dot-flashing {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #003946;
+  color: #003946;
+  animation: dot-flashing 1s infinite linear alternate;
+  animation-delay: 0.5s;
+}
+.gen-ai-bot .message-pending-row .dot-flashing::before, .gen-ai-bot .message-pending-row .dot-flashing::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+.gen-ai-bot .message-pending-row .dot-flashing::before {
+  left: -15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #003946;
+  color: #003946;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 0s;
+}
+.gen-ai-bot .message-pending-row .dot-flashing::after {
+  left: 15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #003946;
+  color: #003946;
+  animation: dot-flashing 1s infinite alternate;
+  animation-delay: 1s;
+}
+
+@keyframes dot-flashing {
+  0% {
+    background-color: #003946;
+  }
+  50%, 100% {
+    background-color: rgba(234, 171, 0, 0.2);
+    /* background-color: rgba(0, 57, 70, 0.2); */
+    /* background-color: rgba(255, 145, 0, 0.2); */
+  }
+}
+
+
+/*
+ * three dot animation - Amazon Default
+ */
+ .gen-ai-bot .message-pending-row .dot-flashing-demo {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  /* Amazon Default */
+  background-color: darkorange;
+  color: darkorange;
+  animation: dot-flashing-demo 1s infinite linear alternate;
+  animation-delay: 0.5s;
+}
+.gen-ai-bot .message-pending-row .dot-flashing-demo::before, .gen-ai-bot .message-pending-row .dot-flashing-demo::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+.gen-ai-bot .message-pending-row .dot-flashing-demo::before {
+  left: -15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  /* Amazon Default */
+  background-color: darkorange;
+  color: darkorange;
+  animation: dot-flashing-demo 1s infinite alternate;
+  animation-delay: 0s;
+}
+.gen-ai-bot .message-pending-row .dot-flashing-demo::after {
+  left: 15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  /* Amazon Default */
+  background-color: darkorange;
+  color: darkorange;
+  animation: dot-flashing-demo 1s infinite alternate;
+  animation-delay: 1s;
+}
+@keyframes dot-flashing-demo {
+  0% {
+    /* Amazon Default */
+    background-color: darkorange;
+  }
+  50%, 100% {
+    background-color: rgba(234, 171, 0, 0.2);
+  }
+}
+
+/* .gen-ai-bot .app .message-body .col div:nth-last-child(2) .message-receive-row .receive-message .cursor > p:last-child::after { */
+/* .gen-ai-bot .app .message-body .col div:nth-last-child(2) .message-receive-row .receive-message .cursor > * > *:last-child::after { */
+.gen-ai-bot .app .message-body .col div:nth-last-child(2) .message-receive-row .receive-message .cursor > *:last-child::after {
+  content: "";
+  width: 5px;
+  height: 18px;
+  background: rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  animation: cursor-blink 1.5s steps(2) infinite;
+}
+
+@keyframes cursor-blink {
+  0% {
+    opacity: 0;
+  }
+}

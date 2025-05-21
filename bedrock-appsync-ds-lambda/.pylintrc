@@ -1,0 +1,44 @@
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: MIT-0
+
+; [MASTER]
+; init-hook='from pylint.config import find_default_config_files; import os, sys; sys.path.append( os.path.dirname(next(find_default_config_files())) + "/src" )'
+
+[MESSAGES CONTROL]
+
+# Enable the message, report, category or checker with the given id(s). You can
+# either give multiple identifier separated by comma (,) or put this option
+# multiple time.
+#enable=
+
+# Disable the message, report, category or checker with the given id(s). You
+# can either give multiple identifier separated by comma (,) or put this option
+# multiple time (only on the command line, not in the configuration file where
+# it should appear only once).
+; disable=
+disable= invalid-name, broad-exception-raised, broad-exception-caught, bare-except, import-error, logging-too-many-args
+
+[BASIC]
+
+# Naming style matching correct argument names.
+argument-naming-style=snake_case
+
+# Good variable names which should always be accepted, separated by a comma.
+good-names=dynamodb,
+           session,
+           i,
+           j,
+           k,
+           ex,
+           Run,
+           _
+
+[FORMAT]
+# Maximum number of characters on a single line.
+max-line-length=200
+
+[LOGGING]
+
+# Format style used to check logging format string. `old` means using %
+# formatting, `new` is for `{}` formatting,and `fstr` is for f-strings.
+logging-format-style=new

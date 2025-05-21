@@ -1,0 +1,17 @@
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: MIT-0
+
+dist
+package
+*.tar.gz
+build
+*.zip
+
+# terraform excludes
+**/.terraform*
+*.tfstate
+*.tfstate.*
+.terraformrc
+terraform.rc
+user-*.tfvars
+user-*.tfvars.json

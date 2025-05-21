@@ -1,0 +1,73 @@
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: MIT-0
+
+@startuml amazon-connect-api-v0.0.2
+
+skinparam BoxPadding 10
+skinparam ParticipantPadding 5
+skinparam ClassBackgroundColor #AliceBlue
+skinparam Shadowing false
+
+title AWS: Amazon Bedrock - Initiate Streaming
+
+actor User
+participant UserAgent as "Browser"
+box "AWS Cloud"
+    participant AppSyncAPI as "AppSync API" #LightPink
+    participant AppSync_Lambda_DS as "AppSync Lambda DS" #Orange
+    participant SNS as "SNS Topic" #Orange
+end box
+
+skinparam SequenceMessageAlign left
+
+User -> UserAgent: Types a question\nin Web UI
+UserAgent -> AppSyncAPI: Executes\nGraphQL Subscription:\nonSendMessage()
+note right
+  Web UI executes a subscription
+  call onSendMessage() passing in
+  a chat session-id.  This id is
+  unique for the duration of
+  browser session.  Session id 
+  is used in AppSync to route
+  responses to the appropriate
+  end-user chat session.
+end note
+
+AppSyncAPI --> UserAgent: successfully established\nWebSocket Connection
+UserAgent -> AppSyncAPI: Executes GraphQL Query:\ngetLLMResponse()
+AppSyncAPI -> AppSync_Lambda_DS: Query triggers the \nData Source Lambda
+
+AppSync_Lambda_DS -> SNS: Lambda publishes event
+note left
+  Publishing event to SNS
+  is asynchronous step.
+  Lambda issues a fire &
+  forget message to SNS
+  and the call returns
+  immediately.
+end note
+note right
+  SNS has subscription
+  configured to call a
+  Lambda function,
+  Orchestrator Lambda.
+  Refer to next sequence
+  diagram for more
+  details.
+end note
+
+AppSync_Lambda_DS --> AppSyncAPI: Lambda returns response\nindicating successful\npublish operation
+AppSyncAPI --> UserAgent: API returns response
+UserAgent -> UserAgent: Chat Web UI shows\nthree-dots animation\nin chat indicating wait\nstate
+note left
+  At this point, Web UI is
+  waiting to receive stream
+  of data from AppSync over
+  WebSocket connection.
+  User chat input in Web
+  UI is disabled while the
+  application waits for
+  data stream.
+end note
+
+@enduml

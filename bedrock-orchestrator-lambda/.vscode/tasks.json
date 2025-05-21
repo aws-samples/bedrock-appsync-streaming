@@ -1,0 +1,137 @@
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: MIT-0
+
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // https://code.visualstudio.com/docs/editor/tasks-appendix
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "blueprint-appsync-kendra-rag-lambda:terraform:deploy",
+      "type": "shell",
+      "command": "./deploy-terraform.sh",
+      "group": "none",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "AWS_PROFILE": "default",
+          "AWS_REGION": "us-west-2",
+          // set to 'apply' to install or 'destroy' to remove the infrastructure
+          "TERRAFORM_COMMAND": "apply",
+          "DEPLOYMENT_BUCKET_NAME": "YOUR_DEPLOYMENT_S3_BUCKET", // deployment s3 bucket
+          // "DEPLOYMENT_BUCKET_PATH": "deployment", // a sub-path (if necessary) where terraform will upload lambda zip file. do not prefix with '/'  path is already relative to the root of bucket.
+          "LAMBDA_ROLE_ARN": "arn:aws:iam::YOUR_ACCOUNT:role/YOUR_LAMBDA_EXECUTION_ROLE",
+          "LAMBDA_LAYER_ARN": "arn:aws:lambda:YOUR_AWS_REGION:YOUR_ACCOUNT:layer:layer_name:YOUR_LAYER_VERSION",
+          // "SUBNET_IDS": "[\"subnet-123\", \"subnet-456\", \"subnet-789\"]",
+          // "SECURITY_GROUP_IDS": "[\"sg-123\", \"sg-456\", \"sg-789\"]",
+          "RAG_WITH_CUSTOM_PROMPT": "true",
+          "LOG_LEVEL": "debug",
+          "APPSYNC_GRAPHQL_ENDPOINT": "https://abcdef12345.appsync-api.us-west-2.amazonaws.com/graphql",
+          "LM_AI_PERSONA": "Financial Analyst",
+          "LM_RAG_MODE": "conversation", // enumerations -> "agent", "summarization", "conversation"
+          "LM_CONVERSATION_HISTORY": "enable", // enumerations -> "enable", "disable"
+          "LM_CONVERSATION_HISTORY_WINDOW": "4", // 0 = unlimited, otherwise set to a positive non-zero number
+          "LM_METRICS_ENABLED": "true", // enable or disable metrics collection. LM_METRICS_TOPIC_ARN must be set
+          "LM_METRICS_VERBOSE": "false", // emit every all possible langchain execution data, including chains, tools, retrievers, and llm
+          "LM_METRICS_TOPIC_ARN": "arn:aws:sns:YOUR_AWS_REGION:YOUR_AWS_ACCOUNT:YOUR_LM_METRICS_TOPIC_NAME", // SNS topic arn to send metrics data to
+          "LM_TYPE": "bedrock", // enumeratons -> "sagemaker", "bedrock"
+          "LM_VENDOR_NAME": "anthropic", // enumerations -> "cohere", "ai21", "huggingface", "anthropic", "amazon"
+          "LM_MODEL_NAME": "claude-sonnet-v3",
+          // "LM_ENDPOINT_NAME": "j2-ultra", // when LM_TYPE is "sagemaker", optionally override sagemaker endpoint url
+          // "LM_MODEL_ID": "", // when LM_TYPE is "bedrock", optionally override bedrock model id
+          // "LM_BEDROCK_URL": "https://bedrock-runtime.us-west-2.amazonaws.com", // when LM_TYPE is "bedrock", optionally override bedrock endpoint url
+          "KENDRA_INDEX_ID": "abcdef12-1234-5678-abcd-0abcd9876543",
+          "KENDRA_SEARCH_PAGE_SIZE": "5",
+          "KENDRA_SEARCH_PAGE_NUMBER": "1",
+          "KENDRA_INDEX_SEARCH_TOPICS": "Amazon, Mondelez International and NVIDIA",
+          // "KENDRA_QUERY_PREFIX": "Please answer this question",
+          // "SOURCE_S3_BUCKET_NAME": "YOUR_SOURCE_S3_BUCKET_NAME", // bucket name which contains document indexed by kendra - optional (required with SOURCE_S3_KEY and SOURCE_REPLACEMENT_URL)
+          // "SOURCE_S3_KEY": "YOUR_SOURCE_S3_BUCKET_KEY", // can be simply '/' if your source documents are located in the root of bucket, otherwise provide full prefix key - optional (required with SOURCE_S3_BUCKET_NAME and SOURCE_REPLACEMENT_URL)
+          // "SOURCE_REPLACEMENT_URL": "http://YOUR_SOURCE_REPLACEMENT_URL/PATH/" // replacement url.  must end with '/' - optional (required with SOURCE_S3_BUCKET_NAME and SOURCE_S3_KEY)
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "blueprint-appsync-kendra-rag-lambda:terraform:undeploy",
+      "type": "shell",
+      "command": "./deploy-terraform.sh",
+      "group": "none",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "AWS_PROFILE": "default",
+          "AWS_REGION": "us-west-2",
+          // set to 'apply' to install or 'destroy' to remove the infrastructure
+          "TERRAFORM_COMMAND": "destroy",
+          "DEPLOYMENT_BUCKET_NAME": "YOUR_DEPLOYMENT_S3_BUCKET", // deployment s3 bucket
+          // "DEPLOYMENT_BUCKET_PATH": "deployment", // a sub-path (if necessary) where terraform will upload lambda zip file. do not prefix with '/'  path is already relative to the root of bucket.
+          "LAMBDA_ROLE_ARN": "arn:aws:iam::YOUR_ACCOUNT:role/YOUR_LAMBDA_EXECUTION_ROLE",
+          "LAMBDA_LAYER_ARN": "arn:aws:lambda:YOUR_AWS_REGION:YOUR_ACCOUNT:layer:layer_name:YOUR_LAYER_VERSION",
+          // "SUBNET_IDS": "[\"subnet-123\", \"subnet-456\", \"subnet-789\"]",
+          // "SECURITY_GROUP_IDS": "[\"sg-123\", \"sg-456\", \"sg-789\"]",
+          "LOG_LEVEL": "debug",
+          "RAG_WITH_CUSTOM_PROMPT": "true",
+          "APPSYNC_GRAPHQL_ENDPOINT": "https://abcdef12345.appsync-api.us-west-2.amazonaws.com/graphql",
+          "LM_AI_PERSONA": "Financial Analyst",
+          "LM_RAG_MODE": "conversation", // enumerations -> "agent", "summarization", "conversation"
+          "LM_CONVERSATION_HISTORY": "enable", // enumerations -> "enable", "disable"
+          "LM_CONVERSATION_HISTORY_WINDOW": "4", // 0 = unlimited, otherwise set to a positive non-zero number
+          "LM_METRICS_ENABLED": "true", // enable or disable metrics collection. LM_METRICS_TOPIC_ARN must be set
+          "LM_METRICS_VERBOSE": "false", // emit every all possible langchain execution data, including chains, tools, retrievers, and llm
+          "LM_METRICS_TOPIC_ARN": "arn:aws:sns:YOUR_AWS_REGION:YOUR_AWS_ACCOUNT:YOUR_LM_METRICS_TOPIC_NAME", // SNS topic arn to send metrics data to
+          "LM_TYPE": "bedrock", // enumeratons -> "sagemaker", "bedrock"
+          "LM_VENDOR_NAME": "anthropic", // enumerations -> "cohere", "ai21", "huggingface", "anthropic", "amazon"
+          "LM_MODEL_NAME": "claude-sonnet-v3",
+          // "LM_ENDPOINT_NAME": "j2-ultra", // when LM_TYPE is "sagemaker", optionally override sagemaker endpoint url
+          // "LM_MODEL_ID": "", // when LM_TYPE is "bedrock", optionally override bedrock model id
+          // "LM_BEDROCK_URL": "https://bedrock-runtime.us-west-2.amazonaws.com", // when LM_TYPE is "bedrock", optionally override bedrock endpoint url
+          "KENDRA_INDEX_ID": "abcdef12-1234-5678-abcd-0abcd9876543",
+          "KENDRA_SEARCH_PAGE_SIZE": "5",
+          "KENDRA_SEARCH_PAGE_NUMBER": "1",
+          "KENDRA_INDEX_SEARCH_TOPICS": "Amazon, Mondelez International and NVIDIA",
+          // "KENDRA_QUERY_PREFIX": "Please answer this question",
+          // "SOURCE_S3_BUCKET_NAME": "YOUR_SOURCE_S3_BUCKET_NAME", // bucket name which contains document indexed by kendra - optional (required with SOURCE_S3_KEY and SOURCE_REPLACEMENT_URL)
+          // "SOURCE_S3_KEY": "YOUR_SOURCE_S3_BUCKET_KEY", // can be simply '/' if your source documents are located in the root of bucket, otherwise provide full prefix key - optional (required with SOURCE_S3_BUCKET_NAME and SOURCE_REPLACEMENT_URL)
+          // "SOURCE_REPLACEMENT_URL": "http://YOUR_SOURCE_REPLACEMENT_URL/PATH/" // replacement url.  must end with '/' - optional (required with SOURCE_S3_BUCKET_NAME and SOURCE_S3_KEY)
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "blueprint-appsync-kendra-rag-lambda:cloudwatch",
+      "type": "shell",
+      "command": "aws",
+      "args": [
+        "logs",
+        "tail",
+        "/aws/lambda/blueprint-appsync-kendra-rag-lambda",
+        "--profile",
+        "default",
+        "--region",
+        "us-west-2"
+      ],
+      "group": "none",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": false
+      },
+      "problemMatcher": []
+    },
+  ]
+}

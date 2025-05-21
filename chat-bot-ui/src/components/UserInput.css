@@ -1,0 +1,41 @@
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+SPDX-License-Identifier: MIT-0 */
+
+.gen-ai-bot .app .user-input-container {
+  display: flex;
+  justify-content: center;
+  /* width: 95%; */
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+/* .gen-ai-bot .wrap-text {
+  width: 100%
+} */
+/* .button {
+  margin: 1;
+} */
+
+/* TODO - bootstrap 3.x fix. */
+.gen-ai-bot .app .user-input-container .user-input-group {
+  display: flex;
+  width: calc(100% - 15vw);
+}
+
+/* TODO - bootstrap 3.x fix. */
+.gen-ai-bot .app .user-input-container .user-input-group > textarea {
+  height: 45px;
+  resize: none;
+}
+
+/* TODO - bootstrap 3.x fix. */
+.gen-ai-bot .app .user-input-container .user-input-group > input {
+  height: 39px;
+}
+
+/* TODO - bootstrap 3.x fix */
+.gen-ai-bot .app .user-input-container .user-input-group > button {
+  font-size: large;
+  color: #003946;
+  line-height: 1;
+}

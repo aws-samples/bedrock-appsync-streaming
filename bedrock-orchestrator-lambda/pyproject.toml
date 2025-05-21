@@ -1,0 +1,26 @@
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: MIT-0
+
+[project]
+name = "bedrock-appsync-kendra-rag-lambda"
+version = "0.0.0"
+authors = [
+  { name="ProServe Canada", email="proserve@amazon.com" },
+]
+description = "Lambda function processes messages from SNS and interacts with Bedrock services using Boto3 SDK. It invokes AppSync Subscription to send data back to caller asynchronously."
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "boto3",
+    "botocore"
+    # 'importlsib-metadata; python_version<"3.8"',
+]
+
+[project.urls]
+"Homepage" = "https://github.com/aws-samples/bedrock-appsync-streaming"
+"Bug Tracker" = "https://github.com/aws-samples/bedrock-appsync-streaming/issues"

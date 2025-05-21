@@ -1,0 +1,29 @@
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: MIT-0
+
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Debug Tests",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "purpose": [
+        "debug-test"
+      ],
+      "internalConsoleOptions": "openOnSessionStart",
+      "justMyCode": false,
+      "env": {
+        "AWS_PROFILE": "default",
+        "AWS_REGION": "us-west-2",
+        "LOG_LEVEL": "debug",
+        "ALLOWED_GRAPHQL_OPERATION_NAMES": "getLlmResponse",
+        "APPSYNC_TOPIC_ARN": "arn:aws:sns:us-west-2:YOUR_AWS_ACCOUNT:YOUR_APPSYNC_RAG_TOPIC",
+      }
+    }
+  ]
+}

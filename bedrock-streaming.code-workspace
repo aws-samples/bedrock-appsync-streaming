@@ -1,0 +1,79 @@
+{
+  "folders": [
+    {
+      "name": "root",
+      "path": "."
+    },
+    {
+      "path": "chat-bot-ui"
+    },
+    {
+      "path": "bedrock-appsync-api"
+    },
+    {
+      "path": "bedrock-appsync-ds-lambda"
+    },
+    {
+      "path": "bedrock-orchestrator-lambda"
+    },
+    {
+      "name": "deployment",
+      "path": "deployment"
+    }
+
+  ],
+  "settings": {
+    "cSpell.words": [
+      "actioninput",
+      "aiohttp",
+      "arun",
+      "AWSJSON",
+      "awsrequest",
+      "behaviour",
+      "botbuilder",
+      "boto",
+      "boto3",
+      "botocore",
+      "connectparticipant",
+      "devcontainer",
+      "devcontainers",
+      "Docstore",
+      "edgardata",
+      "genai",
+      "huggingface",
+      "INPAINTING",
+      "isengard",
+      "Isengard",
+      "jumpstart",
+      "kpis",
+      "langchain",
+      "levelname",
+      "lexbot",
+      "lexv",
+      "LLM's",
+      "llms",
+      "millis",
+      "mixtral",
+      "NOSONAR",
+      "opensearch",
+      "OUTPAINTING",
+      "pydantic",
+      "s3",
+      "sigv4",
+      "TEXTGEN",
+      "venv",
+      "websockets",
+      "zeroshot"
+    ],
+    "python.createEnvironment.trigger": "off",
+    "[python]": {
+      "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "files.associations": {
+      "config.json": "jsonc"
+    },
+    "editor.quickSuggestionsDelay": 1000,
+    "editor.hover.delay": 1000,
+    "files.trimTrailingWhitespace": true
+  }
+}
