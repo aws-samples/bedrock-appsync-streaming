@@ -1,0 +1,34 @@
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: MIT-0
+
+@startuml amazon-connect-api-v0.0.1
+
+skinparam BoxPadding 10
+skinparam ParticipantPadding 5
+skinparam ClassBackgroundColor #AliceBlue
+skinparam Shadowing false
+
+title AWS: Amazon Bedrock Streaming
+
+actor User
+box "AWS Cloud"
+    participant AppSync1 as "AppSync API" #LightPink
+    participant AppSync_Lambda_DS as "AppSync Lambda DS" #Orange
+    participant SNS as "SNS Topic" #Orange
+    participant AppSync_Lambda_Orchestrator as "AppSync Lambda Orchestrator" #Orange
+    participant Bedrock as "Amazon Bedrock" #LightBlue
+    participant AppSync2 as "AppSync API" #LightPink
+end box
+
+skinparam SequenceMessageAlign center
+User -> AppSync1: User sends query \nGraphQL Quer: getLLMQuery()
+AppSync1 -> User: Return 201
+AppSync1 -> AppSync_Lambda_DS: Query triggers the \nData Source Lambda
+AppSync_Lambda_DS -> SNS: User query gets publish \nto the SNS topic
+SNS -> AppSync_Lambda_Orchestrator: Queries are queued up and \nasynchronously triggers the lambda
+AppSync_Lambda_Orchestrator -> Bedrock: Initiate stream user query
+Bedrock -> AppSync_Lambda_Orchestrator: Stream token response
+AppSync_Lambda_Orchestrator -> AppSync2: Lambda returns stream token \ncontaining partial response, \nsendMessage() Mutation
+AppSync2 -> User: Sends stream token to User via WebSocket subscripton onSendMessage()
+
+@enduml

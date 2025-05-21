@@ -1,0 +1,60 @@
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: MIT-0
+
+## common types
+type Message @aws_api_key @aws_iam {
+	content: String
+	contentType: String
+}
+
+## Query types and input
+
+input SendMessageInput {
+	sessionId: String!
+	message: String!
+	locale: String!
+}
+
+type GetLlmResponse @aws_api_key @aws_iam {
+	sessionId: String
+	locale: String
+	messages: [Message]
+}
+
+input GetLlmResponseInput {
+	sessionId: String!
+	message: String!
+	locale: String!
+}
+
+## Mutation & Subscription types and input
+type SendMessageResponse @aws_api_key @aws_iam {
+	sessionId: String!
+	message: String!
+	locale: String!
+	timeStamp: String!
+}
+
+type Mutation {
+	sendMessage(input: SendMessageInput!): SendMessageResponse
+		@aws_api_key
+        @aws_iam
+}
+
+type Query {
+	getLlmResponse(input: GetLlmResponseInput!): GetLlmResponse
+		@aws_api_key
+}
+
+type Subscription {
+	onSendMessage(sessionId: String!): SendMessageResponse
+		@aws_subscribe(mutations: ["sendMessage"])
+        @aws_api_key
+}
+
+# graphql schema
+schema {
+	query: Query
+	mutation: Mutation
+	subscription: Subscription
+}

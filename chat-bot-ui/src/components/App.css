@@ -1,0 +1,42 @@
+/* Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+SPDX-License-Identifier: MIT-0 */
+
+.gen-ai-bot {
+  /* hard-coded height - much faster to render */
+  height: 640px;
+  background-color: white;
+  /* width: 98%; */ /* TODO - bootstrap 3.x fix. */
+  /* margin: 0 auto; */ /* TODO - bootstrap 3.x fix. */
+  padding: 0;
+  margin-left: 15px; /* TODO - bootstrap 3.x fix. */
+  margin-right: 10px; /* TODO - bootstrap 3.x fix. */
+}
+
+.gen-ai-bot .app {
+  height: 100%;
+  max-width: 100%;
+  padding: 0;
+  /*margin: 0 auto; */ /* TODO - bootstrap 3.x fix. */
+  margin: 0;
+}
+
+/* TODO - bootstrap 3.x fix. */
+.gen-ai-bot .shadow {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+/* TODO - bootstrap 3.x fix. remove classes from DOM and CSS when moving to bootstrap 5 */
+.gen-ai-bot .container {
+  width: 100%;
+}
+
+.gen-ai-bot .app .message-body {
+  height: calc(100% - 70px);
+  overflow-y: auto;
+  margin-left: 12px; /* TODO - bootstrap 3.x fix. */
+  margin-right: 12px; /* TODO - bootstrap 3.x fix. */
+  /* border-color: black;
+  border-width: 1px;
+  border-style: dotted; */
+}
+

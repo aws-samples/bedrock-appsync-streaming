@@ -1,0 +1,143 @@
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: MIT-0
+
+{
+	"version": "2.0.0",
+	"tasks": [
+    {
+      "label": "chat-bot-ui:build-dev",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["run", "build-dev"],
+      "group": "none",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "NODE_ENV": "development",
+          "LOCALE": "en_US",
+          "AWS_REGION": "us-west-2",
+          "GRAPHQL_ENDPOINT": "https://API_ID.appsync-api.us-west-2.amazonaws.com/graphql",
+          "GRAPHQL_API_KEY": "da2-XYZ",
+          "CHAT_BOT_NAME": "Chatbot",
+          "APPSYNC_ENABLED": "true",
+          "AGENT_ENABLED": "false",
+          "DEMO_MODE": "false"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "chat-bot-ui:build-demo",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["run", "build-demo"],
+      "group": "none",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "NODE_ENV": "development",
+          "LOCALE": "en_US",
+          "AWS_REGION": "us-west-2",
+          "GRAPHQL_ENDPOINT": "https://API_ID.appsync-api.us-west-2.amazonaws.com/graphql",
+          "GRAPHQL_API_KEY": "da2-XYZ",
+          "CHAT_BOT_NAME": "Chatbot",
+          "APPSYNC_ENABLED": "true",
+          "AGENT_ENABLED": "true",
+          "DEMO_MODE": "true"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "chat-bot-ui:build-prod",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["run", "build"],
+      "group": "none",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "NODE_ENV": "production",
+          "LOCALE": "en_US",
+          "AWS_REGION": "us-west-2",
+          "GRAPHQL_ENDPOINT": "https://API_ID.appsync-api.us-west-2.amazonaws.com/graphql",
+          "GRAPHQL_API_KEY": "da2-XYZ",
+          "CHAT_BOT_NAME": "Chatbot",
+          "APPSYNC_ENABLED": "false",
+          "AGENT_ENABLED": "false",
+          "DEMO_MODE": "false"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "chat-bot-ui:start-dev-server",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["run", "start-dev"],
+      "group": "none",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "NODE_ENV": "development",
+          "LOCALE": "en_US",
+          "AWS_REGION": "us-west-2",
+          "GRAPHQL_ENDPOINT": "https://API_ID.appsync-api.us-west-2.amazonaws.com/graphql",
+          "GRAPHQL_API_KEY": "da2-XYZ",
+          "CHAT_BOT_NAME": "Chatbot",
+          "APPSYNC_ENABLED": "true",
+          "AGENT_ENABLED": "false",
+          "DEMO_MODE": "false"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "chat-bot-ui:start-demo-server",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["run", "start-demo"],
+      "group": "none",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "NODE_ENV": "development",
+          "LOCALE": "en_US",
+          "AWS_REGION": "us-west-2",
+          "GRAPHQL_ENDPOINT": "https://API_ID.appsync-api.us-west-2.amazonaws.com/graphql",
+          "GRAPHQL_API_KEY": "da2-XYZ",
+          "CHAT_BOT_NAME": "Chatbot",
+          "APPSYNC_ENABLED": "true",
+          "AGENT_ENABLED": "true",
+          "DEMO_MODE": "true"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    }
+	]
+}

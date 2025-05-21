@@ -1,0 +1,67 @@
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: MIT-0
+
+@startuml amazon-connect-api-v0.0.2
+
+skinparam BoxPadding 10
+skinparam ParticipantPadding 5
+skinparam ClassBackgroundColor #AliceBlue
+skinparam Shadowing false
+
+title AWS: Amazon Bedrock - Streaming via AppSync Mutations
+
+actor User
+participant UserAgent as "Browser"
+box "AWS Cloud"
+    participant AppSyncAPI as "AppSync API" #LightPink
+    participant SNS as "SNS Topic" #Orange
+    participant OrchestratorLambda as "AppSync Lambda Orchestrator" #Orange
+    participant Bedrock as "Amazon Bedrock" #LightBlue
+end box
+
+skinparam SequenceMessageAlign left
+
+SNS -> OrchestratorLambda: Asynchronously call\nOrchestrator\nLambda function
+note left
+  When a message is published
+  to the SNS topic, SNS starts
+  a Lambda function passing
+  in user chat payload.
+  Multiple copies of the Lambda
+  function can start depending
+  on how many messages are
+  published to the topic.
+end note
+OrchestratorLambda -> Bedrock: Lambda calls Bedrock API:\nInvokeModelWithResponseStream
+note right
+  This starts a streaming session
+  with Bedrock service.  User's
+  chat query is sent to Bedrock
+  hosted LLM.
+end note
+loop Loop through all tokens from Bedrock service
+Bedrock --> OrchestratorLambda: Stream token response
+OrchestratorLambda -> AppSyncAPI: For every partial response (or token)\nreceived from Bedrock service\ncall sendMessage() Mutation
+AppSyncAPI -> UserAgent: Sends partial tokens\nto user via WebSocket
+note right
+  User is subscribed to AppSync
+  using onSendMessage()
+  subscription.  When Lambda
+  calls mutation sendMessage(),
+  AppSync pushes the mutation
+  to subscribers via WebSocket
+  connection.
+end note
+UserAgent -> UserAgent: Chat Web UI renders\npartial responses.
+note right
+  Web UI first stops the
+  three-dot waiting animation.
+  It starts rendering partial
+  token which gives user
+  an experience of bot typing
+  typing response in real-time
+end note
+AppSyncAPI --> OrchestratorLambda: Response from AppSync indicating\nsuccessful mutation operation
+end
+
+@enduml
