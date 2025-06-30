@@ -1,6 +1,3 @@
-# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-# SPDX-License-Identifier: MIT-0
-
 # Overview
 
 This project contains a sample Generative AI Chatbot interface written in React 18+ and [React Context](https://react.dev/learn/scaling-up-with-reducer-and-context) to store application state.  The code uses browser's native fetch API to make service calls.  Additionally, React components use [React Bootstrap](https://react-bootstrap.netlify.app/) (with Bootstrap v5+) widgets as styled components.  Component-specific CSS overrides are in associated &lt;Component&gt;.css files.
@@ -62,9 +59,9 @@ Once the development server launches, you can launch Chrome in debug mode to sta
 * From the `RUN AND DEBUG` drop-down, select `Launch Chrome`
 * Hit the Play button to launch the browser.
 
-## Production Deployment
+## Deployment
 
-Start a production build by calling the `build` target
+Start build by calling the `build` target
 
 ```sh
 yarn run build
